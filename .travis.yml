@@ -10,7 +10,7 @@ matrix:
 
 env:
   global:
-    - PACKAGE_NAME=omero-py
+    - PACKAGE_NAME=bioformats2raw
     - ANACONDA_USER="${TRAVIS_REPO_SLUG%/*}"
     - PATH="$HOME/miniconda/bin:$PATH"
 
