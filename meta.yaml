@@ -1,0 +1,32 @@
+about:
+  home: https://www.openmicroscopy.org/
+  license: GNU General Public v2 or later (GPLv2+)
+  license_family: GPL2
+  summary: Bio-Formats command line tools
+  doc_url: https://docs.openmicroscopy.org/bio-formats/latest/users/comlinetools/index.html
+  dev_url: https://github.com/ome/bioformats
+
+package:
+  name: "bftools"
+  version: "6.3.1"
+
+build:
+  noarch: generic
+  number: 1
+
+source:
+  url: https://downloads.openmicroscopy.org/bio-formats/6.3.1/artifacts/bftools.zip
+  sha256: 1bced614e9e46ac3420e2ebd89e0b0a62de43fc60d29a91185e3738b47c8c649
+
+requirements:
+  host:
+  run:
+    - openjdk
+
+test:
+  commands:
+    - showinf -nopix a.fake
+
+extra:
+  recipe-maintainers:
+    - ome
