@@ -1,27 +1,19 @@
-about:
-  home: https://www.openmicroscopy.org/
-  license: GNU General Public v2 or later (GPLv2+)
-  license_family: GPL2
-  summary: Bio-Formats image file format to raw format converter
-  dev_url: https://github.com/glencoesoftware/bioformats2raw/
-
-
 package:
   name: "bioformats2raw"
-  version: "0.2.1"
+  version: "0.2.2"
 
 build:
   noarch: generic
-  number: 1
+  number: 2
 
 source:
-  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v0.2.1/bioformats2raw-0.2.1.zip
-  sha256: 
+  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v0.2.2/bioformats2raw-0.2.2.zip
+  sha256: e7b8299933d4a4ae54ab1bc52d87531b67db34078cb184e94727a2f8604df792
 
 requirements:
   host:
   run:
-    - openjdk =11
+    - openjdk
 
 test:
   commands:
@@ -30,3 +22,10 @@ test:
 extra:
   recipe-maintainers:
     - ome
+
+about:
+  home: https://www.openmicroscopy.org/
+  license: GNU General Public v2 or later (GPLv2+)
+  license_family: GPL2
+  summary: Bio-Formats image file format to raw format converter
+  dev_url: https://github.com/glencoesoftware/bioformats2raw/
