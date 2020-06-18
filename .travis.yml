@@ -33,10 +33,11 @@ script:
     fi
   - conda build -c ${ANACONDA_USER} --python $PYTHON .
 
-deploy:
-  - provider: script
-    skip_cleanup: true
-    script: anaconda -t "$CONDA_UPLOAD_TOKEN" upload --user ${ANACONDA_USER} $HOME/miniconda/conda-bld/noarch/$PACKAGE_NAME-*.tar.bz2
-    on:
-      tags: true
-      condition: "$TRAVIS_OS_NAME = linux"
+# Deployment has switched to Azure Pipelines (Linux, OSX, Win64)
+#deploy:
+#  - provider: script
+#    skip_cleanup: true
+#    script: anaconda -t "$CONDA_UPLOAD_TOKEN" upload --user ${ANACONDA_USER} $HOME/miniconda/conda-bld/noarch/$PACKAGE_NAME-*.tar.bz2
+#    on:
+#      tags: true
+#      condition: "$TRAVIS_OS_NAME = linux"
