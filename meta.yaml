@@ -3,7 +3,7 @@ package:
   version: "0.2.2"
 
 build:
-  number: 3
+  number: 4
 
 source:
   url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v0.2.2/bioformats2raw-0.2.2.zip
@@ -16,6 +16,7 @@ requirements:
 
 test:
   commands:
+    - conda install -y -c conda-forge blosc
     - bioformats2raw a.fake output
 
 extra:
