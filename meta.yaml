@@ -3,7 +3,7 @@ package:
   version: "0.2.2"
 
 build:
-  number: 4
+  number: 5
 
 source:
   url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v0.2.2/bioformats2raw-0.2.2.zip
@@ -12,12 +12,13 @@ source:
 requirements:
   host:
   run:
+    - blosc
     - openjdk
 
 test:
   commands:
-    - conda install -y -c conda-forge blosc
     - bioformats2raw a.fake output
+    - bioformats2raw --file_type=zarr -r 2 a.fake output.zarr
 
 extra:
   recipe-maintainers:
