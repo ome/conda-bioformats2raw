@@ -1,13 +1,13 @@
 package:
   name: "bioformats2raw"
-  version: "0.2.2"
+  version: "0.2.4"
 
 build:
-  number: 5
+  number: 0
 
 source:
-  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v0.2.2/bioformats2raw-0.2.2.zip
-  sha256: e7b8299933d4a4ae54ab1bc52d87531b67db34078cb184e94727a2f8604df792
+  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v0.2.4/bioformats2raw-0.2.4.zip
+  sha256: df3ae85c69ee159c78f8a21af2f009af834adbaeb91342f829f0d5f29413b15c
 
 requirements:
   host:
