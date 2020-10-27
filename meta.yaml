@@ -13,10 +13,10 @@ source:
 requirements:
   run:
     - blosc
-    - openjdk
+    # - openjdk
     # This seems to be related to the upstream bioformats2raw package
-    # - openjdk=8  # [win]
-    # - openjdk  # [not win]
+    - openjdk=8  # [win]
+    - openjdk  # [not win]
 
 test:
   commands:
