@@ -11,10 +11,18 @@ jobs:
           - macos-latest
           - ubuntu-latest
           - windows-latest
-      # Don't fail fast so we can check if multiple OS are failing
       fail-fast: false
     steps:
+      # Conda is installed in the base VM but it has problems on Windows
+      # Use https://github.com/marketplace/actions/setup-miniconda instead
+      - name: Install miniconda
+        uses: conda-incubator/setup-miniconda@v1
+        with:
+          python-version: "3.8"
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install conda build
         run: conda install -y -q conda-build conda-verify
+      - name: Build
+        run: conda build .
+    # TODO: upload if tagged
