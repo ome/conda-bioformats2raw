@@ -11,10 +11,12 @@ source:
   sha256: 3845453e495f118783d13122eba8a3997a45bef82ac4f08c711b8deae22ef8b2
 
 requirements:
-  host:
   run:
     - blosc
     - openjdk
+    # This seems to be related to the upstream bioformats2raw package
+    # - openjdk=8  # [win]
+    # - openjdk  # [not win]
 
 test:
   commands:
