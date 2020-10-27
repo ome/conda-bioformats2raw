@@ -1,13 +1,14 @@
+{% set version = "0.2.6" %}
 package:
   name: "bioformats2raw"
-  version: "0.2.5"
+  version: "{{ version }}"
 
 build:
   number: 0
 
 source:
-  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v0.2.5/bioformats2raw-0.2.5.zip
-  sha256: fbbb8e2e4a9c0fa1b0d65567773e78584275b687ca519935e66ef3b64a879a7d
+  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v{{ version }}/bioformats2raw-{{ version }}.zip
+  sha256: 3845453e495f118783d13122eba8a3997a45bef82ac4f08c711b8deae22ef8b2
 
 requirements:
   host:
