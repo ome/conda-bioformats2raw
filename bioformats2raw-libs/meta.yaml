@@ -1,31 +1,20 @@
 {% set version = "0.2.6" %}
 package:
-  name: "bioformats2raw"
+  name: "bioformats2raw-libs"
   version: "{{ version }}"
 
 build:
   number: 0
+  noarch: generic
 
 source:
   url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v{{ version }}/bioformats2raw-{{ version }}.zip
   sha256: 3845453e495f118783d13122eba8a3997a45bef82ac4f08c711b8deae22ef8b2
-  patches:
-    - windows-bat-classpath-wildcard.patch  # [win]
 
+# Leave the OS specific dependencies to the wrapper
 requirements:
-  build:
-    - m2-patch  # [win]
   run:
     - blosc
-    # Fails with openjdk 11 on Windows
-    # https://github.com/ome/conda-bioformats2raw/issues/3
-    - openjdk=8  # [win]
-    - openjdk  # [not win]
-
-test:
-  commands:
-    - bioformats2raw a.fake output
-    - bioformats2raw --file_type=zarr -r 2 a.fake output.zarr
 
 extra:
   recipe-maintainers:
@@ -35,5 +24,5 @@ about:
   home: https://www.openmicroscopy.org/
   license: GNU General Public v2 or later (GPLv2+)
   license_family: GPL2
-  summary: Bio-Formats image file format to raw format converter
+  summary: Bio-Formats image file format to raw format converter jars
   dev_url: https://github.com/glencoesoftware/bioformats2raw/
