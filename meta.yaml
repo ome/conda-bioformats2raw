@@ -9,12 +9,16 @@ build:
 source:
   url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v{{ version }}/bioformats2raw-{{ version }}.zip
   sha256: 3845453e495f118783d13122eba8a3997a45bef82ac4f08c711b8deae22ef8b2
+  patches:
+    - windows-bat-classpath-wildcard.patch  # [win]
 
 requirements:
+  build:
+    - m2-patch  # [win]
   run:
     - blosc
-    # - openjdk
-    # This seems to be related to the upstream bioformats2raw package
+    # Fails with openjdk 11 on Windows
+    # https://github.com/ome/conda-bioformats2raw/issues/3
     - openjdk=8  # [win]
     - openjdk  # [not win]
 
