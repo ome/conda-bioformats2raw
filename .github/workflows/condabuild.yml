@@ -13,15 +13,8 @@ jobs:
           - windows-latest
       fail-fast: false
     steps:
-      # Conda is installed in the base VM but it has problems on Windows
-      # Use https://github.com/marketplace/actions/setup-miniconda instead
-      - name: Install miniconda
-        uses: conda-incubator/setup-miniconda@v1
-        with:
-          python-version: "3.8"
-
-      - run: env
-        shell: bash
+      - name: setup-conda
+        uses: s-weigand/setup-conda@v1.0.5
 
       - name: Set conda-bld output folder to make it easier to find artifacts
         id: condablddir
@@ -72,12 +65,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      # Since we just need the client use a python environment
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.8"
-      - run: python -m pip install anaconda-client
+      - name: setup-conda
+        uses: s-weigand/setup-conda@v1.0.5
+      - run: conda install -y -q anaconda-client
+
       - name: Download artifacts from build
         uses: actions/download-artifact@v2
       - name: List artifacts
