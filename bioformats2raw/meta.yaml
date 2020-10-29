@@ -16,7 +16,7 @@ requirements:
   build:
     - m2-patch  # [win]
   run:
-    - bioformats2raw-libs={{ version }}
+    - bioformats2raw-libs={{ PKG_VERSION }}-{{ PKG_BUILDNUM }}
     # Fails with openjdk 11 on Windows
     # https://github.com/ome/conda-bioformats2raw/issues/3
     - openjdk=8  # [win]
