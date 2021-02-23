@@ -1,6 +1,8 @@
+{% set name = "bioformats2raw-libs" %}
 {% set version = "0.2.6" %}
+
 package:
-  name: "bioformats2raw-libs"
+  name: "{{ name|lower }}"
   version: "{{ version }}"
 
 build:
