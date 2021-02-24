@@ -1,0 +1,87 @@
+name: Conda
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+      fail-fast: false
+    steps:
+      - name: setup-conda
+        uses: s-weigand/setup-conda@v1.0.5
+
+      - name: Set conda-bld output folder to make it easier to find artifacts
+        id: condablddir
+        # On Windows /conda-bld and \\conda-bld work here but fail later
+        # c:\\conda-bld seems to work.... for now
+        run: |
+          if [ ${{ matrix.os }} = windows-latest ]; then
+            echo "::set-output name=condabld::c:\\conda-bld"
+          else
+            echo "::set-output name=condabld::$HOME/conda-bld"
+          fi
+        shell: bash
+
+      - run: |
+          echo "${{ steps.condablddir.outputs.condabld }}"
+          mkdir ${{ steps.condablddir.outputs.condabld }}
+          conda config --set conda_build.output_folder ${{ steps.condablddir.outputs.condabld }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install conda build
+        run: conda install -y -q conda-build conda-verify
+
+      - name: Build bioformats2raw-libs
+        run: conda build bioformats2raw-libs
+      - name: Build bioformats2raw
+        run: conda build bioformats2raw
+      - run: ls -R "${{ steps.condablddir.outputs.condabld }}"
+
+      # We want
+      # - bioformats2raw-libs noarch from one job
+      # - bioformats2raw *-64 from all jobs
+
+      - uses: actions/upload-artifact@v2
+        with:
+          path: "${{ steps.condablddir.outputs.condabld }}/noarch/bioformats2raw-libs-*"
+          if-no-files-found: error
+        if: matrix.os == 'ubuntu-latest'
+      - uses: actions/upload-artifact@v2
+        with:
+          # {linux,osx,win}-64
+          path: "${{ steps.condablddir.outputs.condabld }}/*-64/bioformats2raw-*"
+          if-no-files-found: error
+
+  upload:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags')
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: setup-conda
+        uses: s-weigand/setup-conda@v1.0.5
+      - run: conda install -y -q anaconda-client
+
+      - name: Download artifacts from build
+        uses: actions/download-artifact@v2
+      - name: List artifacts
+        run: ls -R
+
+      - name: Upload to Anaconda Cloud
+        run: |
+          anaconda whoami
+          for f in artifact/bioformats2raw* artifact/*/bioformats2raw*; do
+            anaconda upload --user ${ANACONDA_USER} $f
+          done
+        env:
+          ANACONDA_USER: ${{ secrets.ANACONDA_USER }}
+          ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
