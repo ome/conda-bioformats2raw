@@ -1,6 +1,6 @@
 {% set name = "bioformats2raw-libs" %}
-{% set version = "0.3.0-rc3" %}
-{% set tag = "v0.3.0rc3" %}
+{% set version = "0.3.0rc3" %}
+{% set github_version = "0.3.0-rc3" %}
 
 package:
   name: "{{ name|lower }}"
@@ -11,7 +11,7 @@ build:
   noarch: generic
 
 source:
-  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v{{ tag }}/bioformats2raw-{{ version }}.zip
+  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v{{ version }}/bioformats2raw-{{ github_version }}.zip
   sha256: 96a6d4a584f14f8d17d561b11ffb0059c34d47e4c3ffcdca1d15685fc5f6374d
 
 # Leave the OS specific dependencies to the wrapper
