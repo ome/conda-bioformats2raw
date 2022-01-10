@@ -1,5 +1,5 @@
---- bioformats2raw.bat.orig	2022-01-10 14:32:27.000000000 +0000
-+++ bioformats2raw.bat	2022-01-10 14:32:46.000000000 +0000
+--- bin/bioformats2raw.bat.orig	2022-01-10 14:32:27.000000000 +0000
++++ bin/bioformats2raw.bat	2022-01-10 14:32:46.000000000 +0000
 @@ -82,7 +82,7 @@
  :execute
  @rem Setup the command line
