@@ -82,7 +82,7 @@ jobs:
         run: |
           anaconda whoami
           for f in artifact/bioformats2raw* artifact/*/bioformats2raw*; do
-            anaconda upload --user ${ANACONDA_USER} $f
+            anaconda upload --user ${ANACONDA_USER} $f --label pre
           done
         env:
           ANACONDA_USER: ${{ secrets.ANACONDA_USER }}
