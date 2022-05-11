@@ -82,7 +82,11 @@ jobs:
         run: |
           anaconda whoami
           for f in artifact/bioformats2raw* artifact/*/bioformats2raw*; do
-            anaconda upload --user ${ANACONDA_USER} $f
+            if [[ "$f" == *"rc"* ]]; then
+              anaconda upload --user ${ANACONDA_USER} $f --label pre
+            else
+              anaconda upload --user ${ANACONDA_USER} $f
+            fi
           done
         env:
           ANACONDA_USER: ${{ secrets.ANACONDA_USER }}

@@ -1,5 +1,6 @@
 {% set name = "bioformats2raw-libs" %}
-{% set version = "0.4.0" %}
+{% set version = "0.5.0rc1" %}
+{% set github_version = "0.5.0-rc1" %}
 
 package:
   name: "{{ name|lower }}"
@@ -10,8 +11,8 @@ build:
   noarch: generic
 
 source:
-  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v{{ version }}/bioformats2raw-{{ version }}.zip
-  sha256: 4f4d0ba5bb55dcd3069cdf60f417ad9134aab01370582404e903a401dc8973e3
+  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v{{ version }}/bioformats2raw-{{ github_version }}.zip
+  sha256: c4ab400df896ca8eb36bf0cd24eb1a8a5f216c76fbcfda616cf0e3dea8fb8cd3
 
 # Leave the OS specific dependencies to the wrapper
 requirements:
