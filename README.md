@@ -4,6 +4,11 @@
 
 A Conda package for [bioformats2raw](https://github.com/glencoesoftware/bioformats2raw).
 
+## Installation
+
+Install with:
+
+    conda install -c ome bioformats2raw
 
 ## Development notes
 
