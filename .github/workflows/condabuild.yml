@@ -16,9 +16,7 @@ jobs:
       fail-fast: false
     steps:
       - name: setup-conda
-        uses: s-weigand/setup-conda@v1.0.7
-        with:
-          update-conda: true
+        uses: s-weigand/setup-conda@v1.1.1
 
       - name: Set conda-bld output folder to make it easier to find artifacts
         id: condablddir
@@ -70,7 +68,7 @@ jobs:
     steps:
 
       - name: setup-conda
-        uses: s-weigand/setup-conda@v1.0.7
+        uses: s-weigand/setup-conda@v1.1.1
       - run: conda install -y -q anaconda-client
 
       - name: Download artifacts from build
