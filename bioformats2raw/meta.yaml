@@ -1,6 +1,6 @@
 {% set name = "bioformats2raw" %}
-{% set version = "0.5.0rc1" %}
-{% set github_version = "0.5.0-rc1" %}
+{% set version = "0.5.0rc2" %}
+{% set github_version = "0.5.0-rc2" %}
 
 package:
   name: "{{ name|lower }}"
@@ -11,7 +11,7 @@ build:
 
 source:
   url: https://github.com/glencoesoftware/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ github_version }}.zip
-  sha256: c4ab400df896ca8eb36bf0cd24eb1a8a5f216c76fbcfda616cf0e3dea8fb8cd3
+  sha256: 70a7b84bd91cafc1803a0fef1994e58731b3058659f8c066311b29c796ea5897
   patches:
     - windows-bat-classpath-wildcard.patch  # [win]
 
