@@ -24,9 +24,9 @@ jobs:
         # c:\\conda-bld seems to work.... for now
         run: |
           if [ ${{ matrix.os }} = windows-latest ]; then
-            echo "::set-output name=condabld::c:\\conda-bld"
+            echo "condabld=c:\\conda-bld" >> $GITHUB_OUTPUT
           else
-            echo "::set-output name=condabld::$HOME/conda-bld"
+            echo "condabld=$HOME/conda-bld" >> $GITHUB_OUTPUT
           fi
         shell: bash
 
