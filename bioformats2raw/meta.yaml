@@ -5,6 +5,7 @@
 package:
   name: "{{ name|lower }}"
   version: "{{ version }}"
+  github_version: "{{ github_version }}"
 
 build:
   number: 0
