@@ -1,5 +1,5 @@
 {% set name = "bioformats2raw-libs" %}
-{% set version = "0.5.0" %}
+{% set version = "0.6.1" %}
 
 package:
   name: "{{ name|lower }}"
@@ -10,17 +10,18 @@ build:
   noarch: generic
 
 source:
-  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v{{ version }}/bioformats2raw-{{ version }}.zip
-  sha256: 23f88a70c6ee94998e08420a465f8497b6da561488ac1dc3f56335c9763064d0
+  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v{{ version
+    }}/bioformats2raw-{{ version }}.zip
+  sha256: ca821ffb2a357a4ae15afd1c17848c4acd2ca905013183ad7ceb7b4e4b50643d
 
 # Leave the OS specific dependencies to the wrapper
 requirements:
   run:
-    - blosc
+  - blosc
 
 extra:
   recipe-maintainers:
-    - ome
+  - ome
 
 about:
   home: https://www.glencoesoftware.com/

@@ -1,5 +1,5 @@
 {% set name = "bioformats2raw" %}
-{% set version = "0.5.0" %}
+{% set version = "0.6.1" %}
 
 package:
   name: "{{ name|lower }}"
@@ -9,26 +9,27 @@ build:
   number: 0
 
 source:
-  url: https://github.com/glencoesoftware/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.zip
-  sha256: 23f88a70c6ee94998e08420a465f8497b6da561488ac1dc3f56335c9763064d0
+  url: https://github.com/glencoesoftware/{{ name }}/releases/download/v{{ version
+    }}/{{ name }}-{{ version }}.zip
+  sha256: ca821ffb2a357a4ae15afd1c17848c4acd2ca905013183ad7ceb7b4e4b50643d
   patches:
-    - windows-bat-classpath-wildcard.patch  # [win]
+  - windows-bat-classpath-wildcard.patch    # [win]
 
 requirements:
   build:
-    - m2-patch  # [win]
+  - m2-patch    # [win]
   run:
-    - bioformats2raw-libs={{ PKG_VERSION }}-{{ PKG_BUILDNUM }}
-    - openjdk
+  - bioformats2raw-libs={{ PKG_VERSION }}-{{ PKG_BUILDNUM }}
+  - openjdk
 
 test:
   commands:
-    - bioformats2raw a.fake output
-    - bioformats2raw --file_type=zarr -r 2 a.fake output.zarr
+  - bioformats2raw a.fake output
+  - bioformats2raw --file_type=zarr -r 2 a.fake output.zarr
 
 extra:
   recipe-maintainers:
-    - ome
+  - ome
 
 about:
   home: https://www.glencoesoftware.com/
