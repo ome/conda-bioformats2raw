@@ -12,8 +12,6 @@ source:
   url: https://github.com/glencoesoftware/{{ name }}/releases/download/v{{ version
     }}/{{ name }}-{{ version }}.zip
   sha256: e94e3fd268bd144069d672899ee0b53182d2b3d71519d2fade8bfaedd6c7bf24
-  patches:
-  - windows-bat-classpath-wildcard.patch    # [win]
 
 requirements:
   build:
