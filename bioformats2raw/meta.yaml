@@ -6,7 +6,8 @@ package:
   version: "{{ version }}"
 
 build:
-  number: 0
+  number: 1
+  noarch: generic
 
 source:
   url: https://github.com/glencoesoftware/{{ name }}/releases/download/v{{ version
@@ -14,8 +15,6 @@ source:
   sha256: e94e3fd268bd144069d672899ee0b53182d2b3d71519d2fade8bfaedd6c7bf24
 
 requirements:
-  build:
-  - m2-patch    # [win]
   run:
   - bioformats2raw-libs={{ PKG_VERSION }}-{{ PKG_BUILDNUM }}
   - openjdk
