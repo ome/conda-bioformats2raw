@@ -7,7 +7,6 @@ package:
 
 build:
   number: 1
-  noarch: generic
 
 source:
   url: https://github.com/glencoesoftware/{{ name }}/releases/download/v{{ version
