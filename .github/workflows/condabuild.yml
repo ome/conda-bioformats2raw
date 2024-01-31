@@ -48,7 +48,7 @@ jobs:
         run: conda install -y -q conda-build conda-verify
 
       - name: Build packages
-        run: conda build -c local bioformats2raw-libs bioformats2raw
+        run: conda build bioformats2raw-libs bioformats2raw --croot ${{ steps.condablddir.outputs.condabld }} --output-folder ${{ steps.condablddir.outputs.condabld }}
 
       - run: ls -R "${{ steps.condablddir.outputs.condabld }}"
 
