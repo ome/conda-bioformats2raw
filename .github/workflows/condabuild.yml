@@ -22,6 +22,7 @@ jobs:
         with:
           auto-activate-base: true
           activate-environment: ""
+          miniconda-version: "latest"
 
       - name: Set conda-bld output folder to make it easier to find artifacts
         id: condablddir
@@ -80,6 +81,7 @@ jobs:
         with:
           auto-activate-base: true
           activate-environment: ""
+          miniconda-version: "latest"
 
       - run: conda install -y -q anaconda-client
 
