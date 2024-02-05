@@ -7,3 +7,7 @@ if errorlevel 1 exit 1
 mkdir %PREFIX%\bin
 echo %%~dp0..\share\%pkg%\bin\bioformats2raw %%* > %PREFIX%\bin\bioformats2raw.bat
 if errorlevel 1 exit 1
+
+mkdir %PREFIX%\share\%pkg%\lib
+xcopy %SRC_DIR%\lib\* %PREFIX%\share\%pkg%\lib\ /E
+if errorlevel 1 exit 1
