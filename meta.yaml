@@ -20,8 +20,7 @@ requirements:
 
 test:
   commands:
-  - bioformats2raw a.fake output
-  - bioformats2raw --file_type=zarr -r 2 a.fake output.zarr
+  - bioformats2raw a.fake output.zarr
 
 extra:
   recipe-maintainers:
