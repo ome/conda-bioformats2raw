@@ -54,7 +54,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          # {linux,osx,win}-64
+          name: "${{ matrix.os }}"
           path: "${{ steps.condablddir.outputs.condabld }}/*-64/bioformats2raw-*"
           if-no-files-found: error
 
