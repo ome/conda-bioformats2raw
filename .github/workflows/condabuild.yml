@@ -33,6 +33,10 @@ jobs:
             echo "condabld=c:\\conda-bld" >> $GITHUB_OUTPUT
           else
             echo "condabld=$HOME/conda-bld" >> $GITHUB_OUTPUT
+            if [ ${{ matrix.os }} = macos-14 ]; then
+              # Surprising that this is required. Locally, the directory includes "arm" automatically
+              conda config --env --set subdir "osx-arm64"
+            fi
           fi
         shell: bash
 
@@ -55,7 +59,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: "${{ matrix.os }}"
-          path: "${{ steps.condablddir.outputs.condabld }}/*-64/bioformats2raw-*"
+          path: "${{ steps.condablddir.outputs.condabld }}/*/bioformats2raw-*.tar.bz2"
           if-no-files-found: error
 
   upload:
