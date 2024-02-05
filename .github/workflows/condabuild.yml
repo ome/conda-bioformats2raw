@@ -82,7 +82,7 @@ jobs:
       - name: Upload to Anaconda Cloud
         run: |
           anaconda whoami
-          for f in artifact/bioformats2raw* artifact/*/bioformats2raw*; do
+          for f in */*/bioformats2raw*.tar.bz2; do
             if [[ "$f" == *"rc"* ]]; then
               anaconda upload --user ${ANACONDA_USER} $f --label pre
             else
