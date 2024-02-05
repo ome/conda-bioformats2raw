@@ -52,7 +52,7 @@ jobs:
 
       - run: ls -R "${{ steps.condablddir.outputs.condabld }}"
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           # {linux,osx,win}-64
           path: "${{ steps.condablddir.outputs.condabld }}/*-64/bioformats2raw-*"
@@ -74,7 +74,7 @@ jobs:
       - run: conda install -y -q anaconda-client
 
       - name: Download artifacts from build
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
 
       - name: List artifacts
         run: ls -R
