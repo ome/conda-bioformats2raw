@@ -80,6 +80,7 @@ jobs:
         run: ls -R
 
       - name: Upload to Anaconda Cloud
+        shell: bash -el {0}
         run: |
           anaconda whoami
           for f in */*/bioformats2raw*.tar.bz2; do
