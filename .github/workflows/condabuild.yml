@@ -48,19 +48,10 @@ jobs:
         run: conda install -y -q conda-build conda-verify
 
       - name: Build packages
-        run: conda build bioformats2raw-libs bioformats2raw --croot ${{ steps.condablddir.outputs.condabld }} --output-folder ${{ steps.condablddir.outputs.condabld }}
+        run: conda build .
 
       - run: ls -R "${{ steps.condablddir.outputs.condabld }}"
 
-      # We want
-      # - bioformats2raw-libs noarch from one job
-      # - bioformats2raw *-64 from all jobs
-
-      - uses: actions/upload-artifact@v2
-        with:
-          path: "${{ steps.condablddir.outputs.condabld }}/noarch/bioformats2raw-libs-*"
-          if-no-files-found: error
-        if: matrix.os == 'ubuntu-latest'
       - uses: actions/upload-artifact@v2
         with:
           # {linux,osx,win}-64
