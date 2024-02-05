@@ -10,13 +10,19 @@ jobs:
     strategy:
       matrix:
         os:
-          - macos-latest
+          - macos-12
+          - macos-14
           - ubuntu-latest
           - windows-latest
       fail-fast: false
+
     steps:
       - name: setup-conda
-        uses: s-weigand/setup-conda@v1.1.1
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-activate-base: true
+          activate-environment: ""
+          miniconda-version: "latest"
 
       - name: Set conda-bld output folder to make it easier to find artifacts
         id: condablddir
@@ -37,27 +43,18 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Install conda build
         run: conda install -y -q conda-build conda-verify
 
-      - name: Build bioformats2raw-libs
-        run: conda build bioformats2raw-libs
-      - name: Build bioformats2raw
-        run: conda build bioformats2raw
+      - name: Build packages
+        run: conda build .
+
       - run: ls -R "${{ steps.condablddir.outputs.condabld }}"
 
-      # We want
-      # - bioformats2raw-libs noarch from one job
-      # - bioformats2raw *-64 from all jobs
-
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
-          path: "${{ steps.condablddir.outputs.condabld }}/noarch/bioformats2raw-libs-*"
-          if-no-files-found: error
-        if: matrix.os == 'ubuntu-latest'
-      - uses: actions/upload-artifact@v2
-        with:
-          # {linux,osx,win}-64
+          name: "${{ matrix.os }}"
           path: "${{ steps.condablddir.outputs.condabld }}/*-64/bioformats2raw-*"
           if-no-files-found: error
 
@@ -68,18 +65,24 @@ jobs:
     steps:
 
       - name: setup-conda
-        uses: s-weigand/setup-conda@v1.1.1
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-activate-base: true
+          activate-environment: ""
+          miniconda-version: "latest"
+
       - run: conda install -y -q anaconda-client
 
       - name: Download artifacts from build
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
+
       - name: List artifacts
         run: ls -R
 
       - name: Upload to Anaconda Cloud
         run: |
           anaconda whoami
-          for f in artifact/bioformats2raw* artifact/*/bioformats2raw*; do
+          for f in */*/bioformats2raw*.tar.bz2; do
             if [[ "$f" == *"rc"* ]]; then
               anaconda upload --user ${ANACONDA_USER} $f --label pre
             else

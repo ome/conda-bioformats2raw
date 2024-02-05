@@ -1,5 +1,5 @@
 {% set name = "bioformats2raw" %}
-{% set version = "0.7.0" %}
+{% set version = "0.9.1" %}
 
 package:
   name: "{{ name|lower }}"
@@ -11,19 +11,16 @@ build:
 source:
   url: https://github.com/glencoesoftware/{{ name }}/releases/download/v{{ version
     }}/{{ name }}-{{ version }}.zip
-  sha256: e94e3fd268bd144069d672899ee0b53182d2b3d71519d2fade8bfaedd6c7bf24
+  sha256: fd0c2f6ad40047c35c43d1f9b547053f1c53335428350effca9feeda7aa8cfa0
 
 requirements:
-  build:
-  - m2-patch    # [win]
   run:
-  - bioformats2raw-libs={{ PKG_VERSION }}-{{ PKG_BUILDNUM }}
   - openjdk
+  - blosc
 
 test:
   commands:
-  - bioformats2raw a.fake output
-  - bioformats2raw --file_type=zarr -r 2 a.fake output.zarr
+  - bioformats2raw a.fake output.zarr
 
 extra:
   recipe-maintainers:
