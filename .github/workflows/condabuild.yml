@@ -51,7 +51,7 @@ jobs:
         run: conda install -y -q conda-build conda-verify
 
       - name: Build packages
-        run: conda build .
+        run: conda build . --package-format tar.bz2
 
       - run: ls -R "${{ steps.condablddir.outputs.condabld }}"
 
