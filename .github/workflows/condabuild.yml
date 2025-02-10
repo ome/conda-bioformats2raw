@@ -32,7 +32,7 @@ jobs:
             echo "condabld=c:\\conda-bld" >> $GITHUB_OUTPUT
           else
             echo "condabld=$HOME/conda-bld" >> $GITHUB_OUTPUT
-            if [ ${{ matrix.os }} = macos-14 ]; then
+            if [ ${{ matrix.os }} = macos-latest ]; then
               # Surprising that this is required. Locally, the directory includes "arm" automatically
               conda config --env --set subdir "osx-arm64"
             fi
