@@ -61,7 +61,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: "${{ matrix.os }}"
-          path: "${{ steps.condablddir.outputs.condabld }}/*/bioformats2raw-*.tar.bz2"
+          path: "${{ steps.condablddir.outputs.condabld }}/*/bioformats2raw-*.conda"
           if-no-files-found: error
 
   upload:
