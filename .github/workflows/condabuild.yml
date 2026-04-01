@@ -22,6 +22,7 @@ jobs:
           auto-activate-base: true
           activate-environment: ""
           miniconda-version: "latest"
+          python-version: "3.12"
 
       - name: Set conda-bld output folder to make it easier to find artifacts
         id: condablddir
