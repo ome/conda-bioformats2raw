@@ -10,9 +10,9 @@ jobs:
     strategy:
       matrix:
         os:
-          - macos-12
-          - macos-14
+          - macos-latest
           - ubuntu-latest
+          - ubuntu-24.04-arm
           - windows-latest
       fail-fast: false
 
@@ -23,6 +23,7 @@ jobs:
           auto-activate-base: true
           activate-environment: ""
           miniconda-version: "latest"
+          python-version: "3.12"
 
       - name: Set conda-bld output folder to make it easier to find artifacts
         id: condablddir
@@ -33,7 +34,7 @@ jobs:
             echo "condabld=c:\\conda-bld" >> $GITHUB_OUTPUT
           else
             echo "condabld=$HOME/conda-bld" >> $GITHUB_OUTPUT
-            if [ ${{ matrix.os }} = macos-14 ]; then
+            if [ ${{ matrix.os }} = macos-latest ]; then
               # Surprising that this is required. Locally, the directory includes "arm" automatically
               conda config --env --set subdir "osx-arm64"
             fi
@@ -52,7 +53,7 @@ jobs:
         run: conda install -y -q conda-build conda-verify
 
       - name: Build packages
-        run: conda build .
+        run: conda build . --package-format tar.bz2
 
       - run: ls -R "${{ steps.condablddir.outputs.condabld }}"
 
