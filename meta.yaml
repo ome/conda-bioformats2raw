@@ -1,5 +1,5 @@
 {% set name = "bioformats2raw" %}
-{% set version = "0.10.1" %}
+{% set version = "0.11.0" %}
 
 package:
   name: "{{ name|lower }}"
@@ -11,7 +11,7 @@ build:
 source:
   url: https://github.com/glencoesoftware/{{ name }}/releases/download/v{{ version
     }}/{{ name }}-{{ version }}.zip
-  sha256: db1e47b103056220eeab7be705e3d41e3ed74e80f5fd3b86975fa01c77680502
+  sha256: ea5352eb684ed989622559e2cd594077ce5f58b6fe375ede08518856622a3864
 
 requirements:
   run:
