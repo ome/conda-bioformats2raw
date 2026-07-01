@@ -16,7 +16,6 @@ source:
 requirements:
   run:
   - openjdk
-  - blosc
 
 test:
   commands:
